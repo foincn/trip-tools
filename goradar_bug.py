@@ -22,14 +22,17 @@ def search_bug():
             date = source[0].span.text.strip().split(' ')[0]
             agency = source[0].span.text.strip().split(' ')[1]
             today = datetime.now(timezone('Asia/Shanghai')).strftime('%y-%m-%d')
-            if date] == today:
-                text = '旅行雷达找到BUG\r%s\r%s' %（title, agency)
+            if date == today:
+                text = '旅行雷达找到BUG\r%s\r%s' % (title, agency)
                 print(text)
                 sms.send_sms(16267318573, text)
 
 def start():
+    c = 0
     while True:
+        c += 1
         search_bug()
+        print('第%s次扫描完成。' % c)
         time.sleep(600)
 
 
